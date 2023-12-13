@@ -17,7 +17,9 @@ create:async(req,res)=>{
 },
 list:async(req,res)=>{
     try {
-        const listSubCat = await subCategorie.find()
+        const listSubCat = await subCategorie.find().populate("category").select("-__v")
+        //[.populate("category")  pour affiché les détails de catégory]
+        //[.select("-__v")   pour que n'affiche pas la version][.select("-__name")   pour que n'affiche pas name]
         res.status(200).json({
             message:"succé d'affichage",
             data: listSubCat,

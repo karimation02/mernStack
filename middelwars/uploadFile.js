@@ -1,13 +1,20 @@
 const multer = require("multer");
 
+
+// pour stocker les images dans mu-uploads
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "./my-uploads");
   },
-  filename: function (req, file, cb) {
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
-    cb(null, file.fieldname + '-' + uniqueSuffix)
+  // pour stocker les images dans mu-uploads
+
+  filename: function (req, file, cb) { //pour enregistré l'image avec le même nom
+    cb(null, file.originalname)        //pour enregistré l'image avec le même nom
   },
+
+
+
+//pour tester le format d'image: accepte seulement les images de type jpeg/jpg/png   sino afiiche erreur
 });
 const upload = multer({
   storage: storage,
@@ -23,4 +30,5 @@ const upload = multer({
     }
   },
 });
+//pour tester le format d'image: accepte seulement les images de type jpeg/jpg/png   sino afiiche erreur
 module.exports = upload;

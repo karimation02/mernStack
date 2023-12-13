@@ -2,6 +2,11 @@ const categorie = require("../Model/categorie")
 module.exports = {
     create: async(req,res)=>{
         try {
+
+
+         req.body["image"] = req.file.filename
+
+
             const newCategorie = new categorie(req.body)
             await newCategorie.save()
             res.status(201).json({
@@ -31,6 +36,11 @@ module.exports = {
     },
     update:async(req,res)=>{
         try {
+
+
+            req.body["image"] = req.file.filename
+
+            
             const updateCategorie = await categorie.findByIdAndUpdate({_id:req.params.id},req.body,{new:true})
             res.status(200).json({
                 message:"id modifié",

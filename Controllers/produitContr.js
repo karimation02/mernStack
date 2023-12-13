@@ -8,6 +8,14 @@ module.exports = {
             :req.files?.map((file)=>{
                 return {name:file.filename}
             })
+            
+
+            
+/*  req.body["image"]=req.files.length <= 0 //// fait un parcour s'il nya pas d'images
+            ?[] /// return table vide
+            :req.files?.map((file)=>{//  s'il ya des images
+                return {name:file.filename}//affiché nom d'image
+            })*/
 
 
             const newProduit = new Produit (req.body)
